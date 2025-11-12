@@ -18,17 +18,6 @@ pnpm lint          # Run ESLint
 
 When working with GitHub issues, use the `gh` CLI command:
 
-```bash
-# Create a new issue
-gh issue create --title "Add user authentication" --body "Implement JWT-based auth"
-
-# List all open issues
-gh issue list
-
-# View issue details
-gh issue view 42
-```
-
 **Note**: For all GitHub-related operations (viewing, creating, editing, closing issues), always use `gh` commands via the Bash tool.
 
 ### Git Worktree Management
@@ -51,6 +40,15 @@ Required environment variables (see `.env.example`):
 - **[TOOLS.md](./TOOLS.md)** - Creating custom MCP tools (refer to this when building new tools)
 - **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Common issues and solutions (refer to this when debugging)
 
+### Claude Agent SDK Documentation
+
+When working with or updating Claude Agent SDK related code, always use **Context7 MCP** to fetch the latest documentation:
+
+```bash
+mcp__context7__resolve-library-id -> /anthropics/claude-agent-sdk-typescript
+```
+**Official Repository**: https://github.com/anthropics/claude-agent-sdk-typescript
+
 ## Project Structure
 
 ```
@@ -59,22 +57,40 @@ claude-agent-template/
 │   ├── api/agent/route.ts          # Agent API endpoint with streaming
 │   ├── layout.tsx                  # Root layout
 │   ├── page.tsx                    # Main chat interface
-│   └── globals.css                 # Global styles
+│   ├── globals.css                 # Global styles
+│   └── favicon.ico                 # Favicon
 ├── components/
 │   ├── agent-chat.tsx              # Main chat UI component
 │   ├── input.tsx                   # Chat input with auto-resize
-│   └── footnote.tsx                # Footer component
+│   ├── messages.tsx                # Message rendering components
+│   ├── markdown-components.tsx     # Markdown renderers
+│   ├── footnote.tsx                # Footer component
+│   ├── icons.tsx                   # Icon components
+│   ├── hooks/
+│   │   └── use-agent.ts            # Agent hook for client-side interaction
+│   └── ui/
+│       └── example-prompts.tsx     # Example prompts UI
 ├── lib/
+│   ├── config/
+│   │   ├── agent-config.ts         # Agent configuration
+│   │   └── system-prompt.ts        # System prompt configuration
+│   ├── types/
+│   │   └── agent.ts                # TypeScript type definitions
 │   ├── mcp-tools.ts                # MCP tools registry
 │   └── mcp-tools/
 │       └── hello-world.ts          # Example MCP tool
+├── tests/
+│   └── basic.spec.ts               # Playwright test suite
+├── public/                         # Static assets
 ├── .claude/
 │   ├── commands/                   # Custom slash commands
 │   ├── agents/                     # Specialized agents
 │   └── prompts.md                  # System prompts library
 ├── wt                              # Git worktree helper script
+├── playwright.config.ts            # Playwright configuration
 ├── CLAUDE.md                       # This file
 ├── README.md                       # Overview and quick start
+├── README.ko.md                    # Korean README
 ├── TOOLS.md                        # Tool creation guide
 └── TROUBLESHOOTING.md              # Troubleshooting guide
 ```

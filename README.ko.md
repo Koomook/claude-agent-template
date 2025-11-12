@@ -144,36 +144,7 @@ pnpm dev                            # 이 브랜치의 개발 서버 시작
 
 - **[TOOLS.md](./TOOLS.md)** - 커스텀 MCP 툴 생성 완전 가이드
 - **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - 일반적인 문제 및 해결 방법
-- **[CLAUDE.md](./CLAUDE.md)** - 개발 환경 설정 및 워크플로우
-
-## 프로젝트 구조
-
-```
-claude-agent-template/
-├── app/
-│   ├── api/agent/route.ts          # 스트리밍을 포함한 에이전트 API 엔드포인트
-│   ├── layout.tsx                  # 루트 레이아웃
-│   ├── page.tsx                    # 메인 채팅 인터페이스
-│   └── globals.css                 # 글로벌 스타일
-├── components/
-│   ├── agent-chat.tsx              # 메인 채팅 UI 컴포넌트
-│   ├── input.tsx                   # 자동 크기 조절 채팅 입력
-│   └── footnote.tsx                # 푸터 컴포넌트
-├── lib/
-│   ├── mcp-tools.ts                # MCP 툴 레지스트리
-│   └── mcp-tools/
-│       └── hello-world.ts          # 예제 MCP 툴
-├── .claude/
-│   ├── commands/                   # 커스텀 슬래시 커맨드
-│   ├── agents/                     # 전문화된 에이전트
-│   └── prompts.md                  # 시스템 프롬프트 라이브러리
-├── wt                              # Git worktree 헬퍼 스크립트
-├── CLAUDE.md                       # 개발 가이드
-├── TOOLS.md                        # 툴 생성 가이드
-├── TROUBLESHOOTING.md              # 트러블슈팅 가이드
-├── README.md                       # 영문 README
-└── README.ko.md                    # 한국어 README (이 파일)
-```
+- **[CLAUDE.md](./CLAUDE.md)** - 개발 환경 설정 및 워크플로우 (프로젝트 구조 포함)
 
 ## 참고 자료
 

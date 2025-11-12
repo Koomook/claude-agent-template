@@ -144,35 +144,7 @@ See `.claude/commands/solve-github-issue.md` and `.claude/agents/` for implement
 
 - **[TOOLS.md](./TOOLS.md)** - Complete guide to creating custom MCP tools
 - **[TROUBLESHOOTING.md](./TROUBLESHOOTING.md)** - Common issues and solutions
-- **[CLAUDE.md](./CLAUDE.md)** - Development environment setup and workflow
-
-## Project Structure
-
-```
-claude-agent-template/
-├── app/
-│   ├── api/agent/route.ts          # Agent API endpoint with streaming
-│   ├── layout.tsx                  # Root layout
-│   ├── page.tsx                    # Main chat interface
-│   └── globals.css                 # Global styles
-├── components/
-│   ├── agent-chat.tsx              # Main chat UI component
-│   ├── input.tsx                   # Chat input with auto-resize
-│   └── footnote.tsx                # Footer component
-├── lib/
-│   ├── mcp-tools.ts                # MCP tools registry
-│   └── mcp-tools/
-│       └── hello-world.ts          # Example MCP tool
-├── .claude/
-│   ├── commands/                   # Custom slash commands
-│   ├── agents/                     # Specialized agents
-│   └── prompts.md                  # System prompts library
-├── wt                              # Git worktree helper script
-├── CLAUDE.md                       # Development guide
-├── TOOLS.md                        # Tool creation guide
-├── TROUBLESHOOTING.md              # Troubleshooting guide
-└── README.md                       # This file
-```
+- **[CLAUDE.md](./CLAUDE.md)** - Development environment setup and workflow (includes project structure)
 
 ## Resources
 

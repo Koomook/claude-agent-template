@@ -2,7 +2,6 @@ import { Toaster } from 'sonner';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import Link from 'next/link';
-import Image from 'next/image';
 import type { Metadata } from 'next';
 
 import './globals.css';

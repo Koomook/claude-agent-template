@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Usage: ./wt {branch}
+# Creates a git worktree for the specified branch
+
+set -e
+
+if [ -z "$1" ]; then
+  echo "Usage: ./wt {branch}"
+  echo "Example: ./wt feature/new-feature"
+  exit 1
+fi
+
+BRANCH=$1
+WORKTREE_PATH="../$BRANCH"
+
+echo "Creating worktree for branch: $BRANCH"
+echo "Location: $WORKTREE_PATH"
+echo ""
+
+# 1. Create worktree
+git worktree add "$WORKTREE_PATH" -b "$BRANCH" 2>/dev/null || git worktree add "$WORKTREE_PATH" "$BRANCH"
+
+# 2. Copy .env file
+if [ -f .env ]; then
+  echo "Copying .env file..."
+  cp .env "$WORKTREE_PATH/.env"
+else
+  echo "Warning: .env file not found in current directory"
+fi
+
+# 3. Install packages
+echo "Installing packages..."
+cd "$WORKTREE_PATH"
+pnpm install
+
+echo ""
+echo "✓ Worktree created successfully!"
+echo "To switch to the new worktree, run:"
+echo "  cd $WORKTREE_PATH"

@@ -6,7 +6,7 @@ import { markdownComponents } from "./markdown-components";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon, SpinnerIcon } from "./icons";
-import { UIMessage } from "ai";
+import { UIMessage } from "@/lib/types/agent";
 
 interface ReasoningPart {
   type: "reasoning";
@@ -144,7 +144,7 @@ export function ToolMessagePart({ toolName, toolInput, toolResult }: ToolMessage
           <span className="text-lg">🛠️</span>
           <span className="text-sm font-medium dark:text-zinc-200 text-zinc-800">
             Tool: <span className="dark:text-blue-400 text-blue-600">{toolName}</span>
-            {toolResult && <span className="ml-2 dark:text-green-400 text-green-600">✓</span>}
+            {Boolean(toolResult) && <span className="ml-2 dark:text-green-400 text-green-600">✓</span>}
           </span>
         </div>
         <button
@@ -171,7 +171,7 @@ export function ToolMessagePart({ toolName, toolInput, toolResult }: ToolMessage
               </pre>
             </div>
 
-            {toolResult && (
+            {Boolean(toolResult) && (
               <div>
                 <div className="text-xs font-medium dark:text-zinc-400 text-zinc-600 mb-1">Result:</div>
                 <pre className="text-xs dark:text-zinc-300 text-zinc-700 overflow-x-auto p-2 dark:bg-zinc-950 bg-zinc-100 rounded max-h-60 overflow-y-auto">
@@ -209,7 +209,8 @@ export function Messages({ messages, status }: MessagesProps) {
   // Check if last message is a final text response (not tool usage)
   const hasTextResponse = lastMessage &&
     lastMessage.role === "assistant" &&
-    lastMessage.parts.some(part => part.type === "text" && (part as any).text?.length > 0);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    lastMessage.parts.some((part: any) => part.type === "text" && part.text?.length > 0);
 
   // Show loading if we're waiting AND (no messages OR last is user OR last is tool usage)
   const shouldShowLoading = isWaitingForResponse && !hasTextResponse;
@@ -233,7 +234,8 @@ export function Messages({ messages, status }: MessagesProps) {
               "": message.role === "assistant",
             })}
           >
-            {message.parts.map((part, partIndex) => {
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {message.parts.map((part: any, partIndex: number) => {
               if (part.type === "text") {
                 return (
                   <TextMessagePart
@@ -260,8 +262,11 @@ export function Messages({ messages, status }: MessagesProps) {
                 return (
                   <ToolMessagePart
                     key={`${message.id}-${partIndex}`}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     toolName={(part as any).toolName}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     toolInput={(part as any).toolInput}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     toolResult={(part as any).toolResult}
                   />
                 );

@@ -1,6 +1,8 @@
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import { NextRequest } from "next/server";
 import { customMcpServer } from "@/lib/mcp-tools";
+import { agentConfig } from "@/lib/config/agent-config";
+import { systemPrompt } from "@/lib/config/system-prompt";
 
 export const maxDuration = 60;
 
@@ -28,10 +30,10 @@ export async function POST(request: NextRequest) {
                 content: {
                   message: "Claude Agent initialized with custom tools",
                   sdk: "@anthropic-ai/claude-agent-sdk",
-                  model: "claude-haiku-4-5",
-                  maxTurns: 10,
-                  tools: ["Read", "Write", "Bash", "Grep", "Glob", "WebSearch"],
-                  customTools: ["hello-world"]
+                  model: agentConfig.model,
+                  maxTurns: agentConfig.maxTurns,
+                  tools: agentConfig.allowedTools.filter(t => !t.startsWith("mcp__")),
+                  customTools: agentConfig.allowedTools.filter(t => t.startsWith("mcp__"))
                 },
                 timestamp: new Date().toISOString(),
               })}\n\n`
@@ -44,50 +46,13 @@ export async function POST(request: NextRequest) {
           prompt: prompt || messages[messages.length - 1]?.text || "",
           options: {
             ...(sessionId ? { resume: sessionId } : {}), // Resume session if sessionId exists
-            model: "claude-haiku-4-5",
-            systemPrompt: `You are an AI assistant powered by Claude Agent SDK with custom MCP tools.
-
-# Your Role & Capabilities
-
-You are a helpful assistant that can:
-1. Use built-in tools (Read, Write, Bash, Grep, Glob, WebSearch) for file operations and system tasks
-2. Use custom MCP tools defined in this project
-3. Help users with various tasks by combining these capabilities
-
-# Available Custom Tools
-
-Currently available custom tools:
-- **hello-world**: A simple greeting tool that demonstrates the MCP tool structure
-  - Takes a name and optional language parameter
-  - Returns a greeting in the specified language (en, ko, es, fr)
-  - Example: "Say hello to Alice in Korean"
-
-# How to Use This Template
-
-This is a template project for building AI agents with custom capabilities. You can:
-1. Add new MCP tools in the \`lib/mcp-tools/\` directory
-2. Register them in \`lib/mcp-tools.ts\`
-3. Update this system prompt to describe how to use your custom tools
-4. Build domain-specific AI agents for your use case
-
-# Guidelines
-
-- Use the appropriate tool for each task
-- Combine multiple tools when needed to accomplish complex tasks
-- Provide clear, helpful responses to users
-- When using custom tools, explain what you're doing and why`,
-            allowedTools: [
-              "Read",
-              "Write",
-              "Bash",
-              "Grep",
-              "Glob",
-              "WebSearch",
-              "mcp__0__hello-world", // Auto-approve custom hello-world tool
-            ],
-            maxTurns: 10,
+            model: agentConfig.model,
+            systemPrompt,
+            allowedTools: agentConfig.allowedTools,
+            maxTurns: agentConfig.maxTurns,
             includePartialMessages: true, // Enable token-by-token streaming
-            mcpServers: [customMcpServer], // Custom MCP server with your tools
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            mcpServers: [customMcpServer] as any, // Custom MCP server with your tools
           },
         });
 

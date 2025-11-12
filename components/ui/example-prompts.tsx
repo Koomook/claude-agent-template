@@ -11,7 +11,7 @@ const examples = [
   {
     title: "File Operations",
     description: "Use built-in Read tool to access files",
-    prompt: "Read the README.md file and summarize what this template does",
+    prompt: "Read the './README.md' file and summarize what this template does",
   },
   {
     title: "Code Search",

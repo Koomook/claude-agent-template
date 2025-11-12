@@ -93,6 +93,8 @@ UI displays tool usage and results
 
 ## Development Workflow
 
+This template is designed to work seamlessly with **Claude Code**, leveraging custom slash commands and specialized sub-agents to streamline your development process.
+
 ### Git Worktree Management
 
 The included `wt` script simplifies creating isolated worktrees for feature branches, allowing you to work on multiple features simultaneously without switching contexts:
@@ -115,10 +117,11 @@ cd ../feature/add-auth              # Switch to new worktree
 pnpm dev                            # Start dev server for this branch
 ```
 
-### GitHub Issue Management
+### GitHub Issue Management with Sub-Agents
 
-This template includes the `/solve-github-issue` slash command that leverages two specialized sub-agents:
+This template includes a **custom slash command** (`/solve-github-issue`) that demonstrates Claude Code's powerful sub-agent architecture:
 
+**Sub-Agents:**
 1. **github-issue-planner** - Analyzes GitHub issues and creates comprehensive implementation plans
 2. **github-issue-manager** - Manages issue lifecycle (updates, test results, closing)
 
@@ -127,13 +130,15 @@ This template includes the `/solve-github-issue` slash command that leverages tw
 /solve-github-issue 42              # Analyze and plan implementation for issue #42
 ```
 
-The workflow:
-1. Planner agent analyzes the issue and related context
-2. Creates a detailed implementation plan
-3. You implement the solution
-4. Manager agent updates the issue with test results and closes it
+**Automated Workflow:**
+1. **Planner sub-agent** analyzes the issue and related context
+2. Creates a detailed implementation plan with file locations and steps
+3. You review and implement the solution
+4. **Manager sub-agent** automatically updates the issue with test results and closes it
 
-See `.claude/agents/` for agent configurations.
+This workflow showcases how to build intelligent development automation using Claude Code's custom slash commands and specialized sub-agents.
+
+See `.claude/commands/solve-github-issue.md` and `.claude/agents/` for implementation details.
 
 ## Documentation
 

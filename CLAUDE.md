@@ -19,7 +19,14 @@ pnpm lint          # Run ESLint
 When working with GitHub issues, use the `gh` CLI command:
 
 ```bash
-gh issue list                          # List all open issues
+# Create a new issue
+gh issue create --title "Add user authentication" --body "Implement JWT-based auth"
+
+# List all open issues
+gh issue list
+
+# View issue details
+gh issue view 42
 ```
 
 **Note**: For all GitHub-related operations (viewing, creating, editing, closing issues), always use `gh` commands via the Bash tool.

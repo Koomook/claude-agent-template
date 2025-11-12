@@ -1,12 +1,13 @@
 # Claude Agent 템플릿
 
-[Vercel AI SDK](https://sdk.vercel.ai/docs), [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview), 그리고 커스텀 MCP 툴을 사용한 AI 에이전트 구축을 위한 Next.js 템플릿입니다.
+[![English](https://img.shields.io/badge/lang-English-blue.svg)](./README.md)
+[![한국어](https://img.shields.io/badge/lang-한국어-red.svg)](./README.ko.md)
 
-> [English](./README.md) | 한국어
+[Vercel AI SDK](https://sdk.vercel.ai/docs), [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview), 그리고 커스텀 MCP 툴을 사용한 AI 에이전트 구축을 위한 Next.js 템플릿입니다.
 
 ## 개요
 
-이 템플릿은 Claude Sonnet 4.5 기반 AI 에이전트 구축을 위한 완전한 기반을 제공합니다. 커스텀 툴 생성, 외부 서비스 연동, 실시간 스트리밍을 포함한 인터랙티브 챗 인터페이스 구축 방법을 보여줍니다.
+이 템플릿은 Claude Haiku 4.5 기반 AI 에이전트 구축을 위한 완전한 기반을 제공합니다. 커스텀 툴 생성, 외부 서비스 연동, 실시간 스트리밍을 포함한 인터랙티브 챗 인터페이스 구축 방법을 보여줍니다.
 
 **기반 프로젝트:**
 - [Vercel AI SDK Reasoning Starter](https://github.com/vercel-labs/ai-sdk-reasoning-starter) - Next.js + AI SDK 기본 설정
@@ -84,7 +85,7 @@ UI에서 툴 사용 및 결과 표시
 
 ### 에이전트 설정
 
-- **모델**: Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
+- **모델**: Claude Haiku 4.5 (`claude-haiku-4-5`)
 - **내장 툴**: Read, Write, Bash, Grep, Glob, WebSearch
 - **커스텀 툴**: MCP (Model Context Protocol)로 정의
 - **최대 턴**: 대화당 10턴

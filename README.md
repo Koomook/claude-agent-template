@@ -1,12 +1,13 @@
 # Claude Agent Template
 
-A Next.js template for building AI agents with [Vercel AI SDK](https://sdk.vercel.ai/docs), [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview), and custom MCP tools.
+[![English](https://img.shields.io/badge/lang-English-blue.svg)](./README.md)
+[![한국어](https://img.shields.io/badge/lang-한국어-red.svg)](./README.ko.md)
 
-> English | [한국어](./README.ko.md)
+A Next.js template for building AI agents with [Vercel AI SDK](https://sdk.vercel.ai/docs), [Claude Agent SDK](https://docs.claude.com/en/docs/agent-sdk/overview), and custom MCP tools.
 
 ## Overview
 
-This template provides a complete foundation for building AI agents powered by Claude Sonnet 4.5. It demonstrates how to create custom tools, integrate with external services, and build interactive chat interfaces with real-time streaming.
+This template provides a complete foundation for building AI agents powered by Claude Haiku 4.5. It demonstrates how to create custom tools, integrate with external services, and build interactive chat interfaces with real-time streaming.
 
 **Based on:**
 - [Vercel AI SDK Reasoning Starter](https://github.com/vercel-labs/ai-sdk-reasoning-starter) - Base Next.js + AI SDK setup
@@ -84,7 +85,7 @@ UI displays tool usage and results
 
 ### Agent Configuration
 
-- **Model**: Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`)
+- **Model**: Claude Haiku 4.5 (`claude-haiku-4-5`)
 - **Built-in Tools**: Read, Write, Bash, Grep, Glob, WebSearch
 - **Custom Tools**: Defined via MCP (Model Context Protocol)
 - **Max Turns**: 10 per conversation

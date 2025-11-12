@@ -27,7 +27,9 @@ This template provides a complete foundation for building AI agents powered by C
 
 - Node.js 18+
 - pnpm (or npm/yarn)
-- Anthropic API Key ([Get one here](https://console.anthropic.com/))
+- **One of the following for authentication:**
+  - Anthropic API Key ([Get one here](https://console.anthropic.com/)), OR
+  - Claude Code CLI ([Install guide](https://docs.claude.com/claude-code))
 
 ### Setup
 
@@ -39,16 +41,22 @@ This template provides a complete foundation for building AI agents powered by C
    pnpm install
    ```
 
-2. **Set up environment variables**
+2. **Authentication Setup (choose one)**
 
-   Copy `.env.example` to `.env`:
+   **Option A: Using API Key (Recommended for production)**
+
+   Copy `.env.example` to `.env` and add your API key:
    ```bash
    cp .env.example .env
+   # Edit .env and add: ANTHROPIC_API_KEY=your_api_key_here
    ```
 
-   Add your Anthropic API key:
-   ```
-   ANTHROPIC_API_KEY=your_api_key_here
+   **Option B: Using Claude Code CLI**
+
+   If you have Claude Code CLI installed and authenticated:
+   ```bash
+   claude auth login
+   # No .env file needed - SDK will use CLI authentication
    ```
 
 3. **Run development server**

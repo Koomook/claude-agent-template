@@ -27,7 +27,9 @@
 
 - Node.js 18+
 - pnpm (또는 npm/yarn)
-- Anthropic API Key ([여기서 발급](https://console.anthropic.com/))
+- **다음 중 하나의 인증 방법:**
+  - Anthropic API Key ([여기서 발급](https://console.anthropic.com/)), 또는
+  - Claude Code CLI ([설치 가이드](https://docs.claude.com/claude-code))
 
 ### 설치
 
@@ -39,16 +41,22 @@
    pnpm install
    ```
 
-2. **환경 변수 설정**
+2. **인증 설정 (둘 중 하나 선택)**
 
-   `.env.example`을 `.env`로 복사:
+   **옵션 A: API 키 사용 (프로덕션 환경 권장)**
+
+   `.env.example`을 `.env`로 복사하고 API 키 추가:
    ```bash
    cp .env.example .env
+   # .env 파일 수정: ANTHROPIC_API_KEY=your_api_key_here
    ```
 
-   Anthropic API 키 추가:
-   ```
-   ANTHROPIC_API_KEY=your_api_key_here
+   **옵션 B: Claude Code CLI 사용**
+
+   Claude Code CLI가 설치되어 있고 인증된 경우:
+   ```bash
+   claude auth login
+   # .env 파일 불필요 - SDK가 CLI 인증 사용
    ```
 
 3. **개발 서버 실행**
